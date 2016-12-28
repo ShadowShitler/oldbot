@@ -36,9 +36,7 @@ public class Shooter{
 
 	public void load(){
 		if(isLoaded == false){
-			PP.set(DoubleSolenoid.Value.kReverse);
-			Timer.delay(.75);
-			PP.set(DoubleSolenoid.Value.kOff);
+			PPdown();
 		}
 		
 			
@@ -59,16 +57,35 @@ public class Shooter{
 		newStamp = newstamp.getTime();
 		
 		for (int i = 0; i < x;){
-			PP.set(DoubleSolenoid.Value.kReverse);
+			PPdown();
 			load();
 		if (newStamp - motorsStarted < .5){
-			PP.set(DoubleSolenoid.Value.kForward);
+			PPup();
 			isLoaded = false;
 			i++;
 		}
 		}
 	}
 
+	public void PPup(){
+		PP.set(DoubleSolenoid.Value.kForward);
+		Timer.delay(.75);
+		PP.set(DoubleSolenoid.Value.kOff);
+	}
+	
+	public void PPdown(){
+		if (!limit.get()){
+			PP.set(DoubleSolenoid.Value.kReverse);
+		}
+		else if(limit.get()){
+			PP.set(DoubleSolenoid.Value.kOff);
+		}
+	}
+
+	public void stopShootMotors(){
+		shootTop.set(0);
+		shootBot.set(0);
+	}
 }
 
 
