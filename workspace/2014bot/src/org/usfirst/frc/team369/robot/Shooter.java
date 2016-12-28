@@ -3,9 +3,6 @@ package org.usfirst.frc.team369.robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Victor;
-
-import java.sql.Time;
-import java.sql.Timestamp;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -64,7 +61,7 @@ public class Shooter{
 		for (int i = 0; i < x;){
 			PPdown();
 			load();
-		if (newStamp - motorsStarted < .5){
+		if ((newStamp - motorsStarted) < .5){
 			PPup();
 			isLoaded = false;
 			i++;
