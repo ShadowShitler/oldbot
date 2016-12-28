@@ -33,12 +33,17 @@ public class Shooter{
         LoadingRelay = new Relay(0);
         PP = new DoubleSolenoid (1,2);
         limit = new DigitalInput(0);
+        motorsOn = false;
         
 	}
 
 	public void load(){
 		if(isLoaded == false){
 			PPdown();
+			isPPdown = true;
+			LoadingRelay.set(Relay.Value.kForward);
+			Timer.delay(.25);
+			LoadingRelay.set(Relay.Value.kOff);
 		}
 		
 			
@@ -47,10 +52,9 @@ public class Shooter{
 	public void getReady(){
 		shootTop.set(1);
 		shootBot.set(.5);
-		motorsOn = true;
 		if (motorsOn == false){
 			motorsStarted = Timer.getFPGATimestamp();
-
+			motorsOn = true;
 		}	
 	}
 
