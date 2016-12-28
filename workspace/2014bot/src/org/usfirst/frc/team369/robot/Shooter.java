@@ -49,14 +49,14 @@ public class Shooter{
 		shootBot.set(.5);
 		motorsOn = true;
 		if (motorsOn == false){
-			motorsStarted = RelayTime.get();
+			motorsStarted = Timer.getFPGATimestamp();
 
 		}	
 	}
 
 	public void shoot(int x){
 		getReady();
-		newStamp = RelayTime.get();
+		newStamp = Timer.getFPGATimestamp();
 		
 		for (int i = 0; i < x;){
 			PPdown();
