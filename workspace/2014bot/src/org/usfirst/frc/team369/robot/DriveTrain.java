@@ -9,10 +9,17 @@ public class DriveTrain{
 	Victor backRight;
 	
 	public void driveTrain(){
-		frontLeft = new Victor(2);
-		backLeft = new Victor(3);
-		frontRight = new Victor(4);
-		backRight = new Victor(5);
+		frontLeft = new Victor(1);
+		backLeft = new Victor(0);
+		frontRight = new Victor(3);
+		backRight = new Victor(2);
+	}
+	
+	public void Drive(double leftSpeed, double rightSpeed){
+		frontLeft.set(leftSpeed);
+		backLeft.set(leftSpeed);
+		frontRight.set(rightSpeed);	
+		backRight.set(rightSpeed);
 	}
 	
 	public void rightforward(){
