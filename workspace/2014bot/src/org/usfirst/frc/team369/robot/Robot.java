@@ -2,12 +2,8 @@
 package org.usfirst.frc.team369.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.buttons.Button;
 
 
 
@@ -19,12 +15,41 @@ import edu.wpi.first.wpilibj.buttons.Button;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	static class buttons{
+		static int 
+		square = 1,
+		x = 2,
+		circle = 3,
+		triangle = 4,
+		L1 = 5,
+		R1 = 6,
+		L2 = 7,
+		R2 = 8,
+		share = 10,
+		options = 10,
+		L3 = 11,
+		R3 = 12,
+		ps = 13,
+		touchpad = 14,
+		//analog
+		leftX = 0,
+		leftY = 1,
+		rightX = 2,
+		L2Analog = 3,
+		R2Analog = 4,
+		rightY = 5;
+	}
+	
+	
+	
 	
     final String defaultAuto = "Default";
     final String customAuto = "My Auto";
     String autoSelected;
     SendableChooser chooser;
-    Joystick sticky;
+    Ps4 p4;
+    Shooter shoot;
+    
     
     /**
      * This function is run when the robot is first started up and should be
@@ -36,8 +61,8 @@ public class Robot extends IterativeRobot {
         chooser.addDefault("Default Auto", defaultAuto);
         chooser.addObject("My Auto", customAuto);
         SmartDashboard.putData("Auto choices", chooser);
-        sticky = new Joystick(1);
-        
+        p4 = new Ps4(0);
+        shoot = new Shooter();
     
        
     
@@ -81,8 +106,10 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-    	
-        
+    	if (p4.getRawButton(buttons.circle)){
+    		shoot.shoot(3);
+    	}
+       
     }
     
     /**
