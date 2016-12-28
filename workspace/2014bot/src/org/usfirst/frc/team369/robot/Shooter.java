@@ -27,8 +27,8 @@ public class Shooter{
 	Timestamp newstamp;
 	
 	public void shooter(){
-		shootTop = new Victor(1);
-        shootBot = new Victor(2);
+		shootTop = new Victor(5);
+        shootBot = new Victor(4);
         LoadingRelay = new Relay(0);
         PP = new DoubleSolenoid (1,2);
         limit = new DigitalInput(0);
@@ -82,13 +82,7 @@ public class Shooter{
 		motorsOn = false;
 	}
 	
-	public void isPPdown(){
-		if (limit.get()){
-			isPPdown = true;
-		}
+	public boolean isPPdown(){
+		return limit.get();
 	}
 }
-
-
-
-
