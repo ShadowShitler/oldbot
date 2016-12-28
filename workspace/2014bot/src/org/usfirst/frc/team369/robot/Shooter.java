@@ -21,7 +21,6 @@ public class Shooter{
 	Timer RelayTime;
 	boolean isLoaded = true;
 	boolean motorsOn;
-	boolean isPPdown;
 	double motorsStarted;
 	double newStamp;
 	
@@ -40,10 +39,10 @@ public class Shooter{
 	public void load(){
 		if(isLoaded == false){
 			PPdown();
-			isPPdown = true;
 			LoadingRelay.set(Relay.Value.kForward);
 			Timer.delay(.25);
 			LoadingRelay.set(Relay.Value.kOff);
+			isLoaded = true;
 		}
 		
 			
@@ -87,7 +86,7 @@ public class Shooter{
 		motorsOn = false;
 	}
 	
-	public boolean isPPdown(){
-		return limit.get();
-	}
+//	public boolean isPPdown(){
+//		return limit.get();
+//	}
 }
