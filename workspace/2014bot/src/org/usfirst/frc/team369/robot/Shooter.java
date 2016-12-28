@@ -3,6 +3,8 @@ package org.usfirst.frc.team369.robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Victor;
+
+import java.sql.Time;
 import java.sql.Timestamp;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
@@ -23,8 +25,7 @@ public class Shooter{
 	double motorsStarted;
 	double newStamp;
 	
-	Timestamp motorsstarted;
-	Timestamp newstamp;
+
 	
 	public void shooter(){
 		shootTop = new Victor(5);
@@ -48,14 +49,14 @@ public class Shooter{
 		shootBot.set(.5);
 		motorsOn = true;
 		if (motorsOn == false){
-			motorsStarted = motorsstarted.getTime();
+			motorsStarted = RelayTime.get();
 
 		}	
 	}
 
 	public void shoot(int x){
 		getReady();
-		newStamp = newstamp.getTime();
+		newStamp = RelayTime.get();
 		
 		for (int i = 0; i < x;){
 			PPdown();
