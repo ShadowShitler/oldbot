@@ -19,6 +19,7 @@ public class Shooter{
 	Timer RelayTime;
 	boolean isLoaded = true;
 	boolean motorsOn;
+	boolean isPPdown;
 	double motorsStarted;
 	double newStamp;
 	
@@ -79,6 +80,12 @@ public class Shooter{
 		shootTop.set(0);
 		shootBot.set(0);
 		motorsOn = false;
+	}
+	
+	public void isPPdown(){
+		if (limit.get()){
+			isPPdown = true;
+		}
 	}
 }
 
