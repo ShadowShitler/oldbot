@@ -69,22 +69,16 @@ public class Shooter{
 
 	public void PPup(){
 		PP.set(DoubleSolenoid.Value.kForward);
-		Timer.delay(.75);
-		PP.set(DoubleSolenoid.Value.kOff);
 	}
 	
 	public void PPdown(){
-		if (!limit.get()){
-			PP.set(DoubleSolenoid.Value.kReverse);
-		}
-		else if(limit.get()){
-			PP.set(DoubleSolenoid.Value.kOff);
-		}
+		PP.set(DoubleSolenoid.Value.kReverse);
 	}
 
 	public void stopShootMotors(){
 		shootTop.set(0);
 		shootBot.set(0);
+		motorsOn = false;
 	}
 }
 
