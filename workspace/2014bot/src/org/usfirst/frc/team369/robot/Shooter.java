@@ -19,8 +19,11 @@ public class Shooter{
 	Timer RelayTime;
 	boolean isLoaded = true;
 	boolean motorsOn;
+	double motorsStarted;
+	double newStamp;
+	
 	Timestamp motorsstarted;
-	Timestamp newStamp;
+	Timestamp newstamp;
 	
 	public void shooter(){
 		shootTop = new Victor(1);
@@ -46,19 +49,19 @@ public class Shooter{
 		shootBot.set(.5);
 		motorsOn = true;
 		if (motorsOn == false){
-			motorsstarted.getTime();
-			motorsstarted.equals(motorsstarted);
+			motorsStarted = motorsstarted.getTime();
+
 		}	
 	}
 
 	public void shoot(int x){
 		getReady();
-		newStamp.getTime();
-		newStamp.equals(newStamp);
+		newStamp = newstamp.getTime();
+		
 		for (int i = 0; i < x;){
 			PP.set(DoubleSolenoid.Value.kReverse);
 			load();
-		if (newStamp.compareTo(motorsstarted) < .5){
+		if (newStamp - motorsStarted < .5){
 			PP.set(DoubleSolenoid.Value.kForward);
 			isLoaded = false;
 			i++;
