@@ -1,9 +1,16 @@
 
 package org.usfirst.frc.team369.robot;
 
+import org.usfirst.frc.team369.robot.Ps4.buttons;
+import org.usfirst.frc.team369.robot.DriveTrain.*;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+
 
 
 
@@ -15,30 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	static class buttons{
-		static int 
-		square = 1,
-		x = 2,
-		circle = 3,
-		triangle = 4,
-		L1 = 5,
-		R1 = 6,
-		L2 = 7,
-		R2 = 8,
-		share = 10,
-		options = 10,
-		L3 = 11,
-		R3 = 12,
-		ps = 13,
-		touchpad = 14,
-		//analog
-		leftX = 0,
-		leftY = 1,
-		rightX = 2,
-		L2Analog = 3,
-		R2Analog = 4,
-		rightY = 5;
-	}
+	
 	
 	
 	
@@ -49,6 +33,8 @@ public class Robot extends IterativeRobot {
     SendableChooser chooser;
     Ps4 p4;
     Shooter shoot;
+    DigitalInput limit;
+ //   RobotDrive DriveController;
     
     
     /**
@@ -63,7 +49,8 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto choices", chooser);
         p4 = new Ps4(0);
         shoot = new Shooter();
-    
+        limit = new DigitalInput(0);
+//        DriveController = new RobotDrive(backLeft, frontLeft, backRight, frontRight);
        
     
     
@@ -106,12 +93,26 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+    	
+    	
+
+    	
+//    if (normalize(p4.getRawAxis(){
+//  //     Drive(1,1);
+//    }
+   } 
+    
+    public void operatorControl(){
+    	while (isOperatorControl() && isEnabled()) {
+    	    		DriveTrain.myDrive.tankDrive(p4.getRawAxis(buttons.leftY), p4.getRawAxis(buttons.rightY));
+    	    		Timer.delay(0.01);
+    	    	}
     	if (p4.getRawButton(buttons.circle)){
     		shoot.shoot(3);
     	}
-       
+    	
+    	
     }
-    
     /**
      * This function is called periodically during test mode
      */
